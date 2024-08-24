@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISS Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <h1>ISS Tracker</h1>
+    </header>
+    <main>
+        <div id="map" class="map"></div>
+        <div id="info" class="info">
+            <p id="coordinates">Loading...</p>
+            <p id="lastUpdate">Last Update: Loading...</p>
+            <p id="updateTime">Time Since Last Update: Loading...</p>
+            <p id="countdown">Next Pass Over Location: Calculating...</p>
+        </div>
+        <div id="error" class="error">Error: <span id="errorMessage">None</span></div>
+    </main>
+    <footer>
+        <p>Data provided by <a href="http://open-notify.org/" target="_blank">Open Notify</a></p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
