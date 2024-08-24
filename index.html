@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISS Tracker</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISS Tracker</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" /> <!-- Link to your CSS file -->
 </head>
 <body>
-    <header>
-        <h1>ISS Tracker</h1>
-    </header>
-    <main>
-        <div id="map" class="map"></div>
-        <div id="info" class="info">
-            <p id="coordinates">Loading...</p>
-            <p id="lastUpdate">Last Update: Loading...</p>
-            <p id="updateTime">Time Since Last Update: Loading...</p>
-            <p id="countdown">Next Pass Over Location: Calculating...</p>
-        </div>
-        <div id="error" class="error">Error: <span id="errorMessage">None</span></div>
-    </main>
-    <footer>
-        <p>Data provided by <a href="http://open-notify.org/" target="_blank">Open Notify</a></p>
-    </footer>
+  <header>
+    <h1>ISS Tracker</h1>
+    <p>Real-time tracking of the International Space Station</p>
+  </header>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+  <div id="map"></div>
+
+  <div id="location-details">
+    <div class="location-card">
+      <h2>Current Location</h2>
+      <p id="latitude">Latitude: --</p>
+      <p id="longitude">Longitude: --</p>
+      <p id="altitude">Altitude: -- km</p>
+      <p id="velocity">Velocity: -- km/h</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 ISS Tracker | <a href="https://www.nasa.gov">Learn more about the ISS</a></p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script> <!-- Link to your JS file -->
 </body>
 </html>
