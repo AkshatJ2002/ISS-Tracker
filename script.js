@@ -1,69 +1,32 @@
-const map = L.map('map').setView([0, 0], 2); // Initialize the map with a default view
+const url = 'https://api.wheretheiss.at/v1/satellites/25544';
+
+const map = L.map('map').setView([0, 0], 2);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+  maxZoom: 19,
 }).addTo(map);
 
-const marker = L.marker([0, 0]).addTo(map); // Add a marker to the map
-const coordinatesElement = document.getElementById('coordinates');
-const lastUpdateElement = document.getElementById('lastUpdate');
-const updateTimeElement = document.getElementById('updateTime');
-const countdownElement = document.getElementById('countdown');
-const errorElement = document.getElementById('error');
-const errorMessageElement = document.getElementById('errorMessage');
+let issMarker = L.marker([0, 0]).addTo(map);
 
-let lastUpdateTime = new Date();
+function updateISS() {
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const lat = data.latitude;
+      const lon = data.longitude;
+      const alt = data.altitude.toFixed(2);
+      const vel = data.velocity.toFixed(2);
+      
+      issMarker.setLatLng([lat, lon]);
+      map.setView([lat, lon], 4);
 
-function updateISSLocation() {
-    fetch('http://api.open-notify.org/iss-now.json')
-        .then(response => response.json())
-        .then(data => {
-            if (data.message === 'success') {
-                const { latitude, longitude } = data.iss_position;
-                const lat = parseFloat(latitude);
-                const lng = parseFloat(longitude);
-
-                // Update the marker position and map view
-                marker.setLatLng([lat, lng]);
-                map.setView([lat, lng], 4);
-
-                // Update coordinates info
-                coordinatesElement.textContent = `Latitude: ${lat.toFixed(4)}, Longitude: ${lng.toFixed(4)}`;
-                
-                // Update last update time
-                const now = new Date();
-                lastUpdateElement.textContent = `Last Update: ${now.toLocaleTimeString()}`;
-                const timeSinceUpdate = Math.floor((now - lastUpdateTime) / 1000);
-                updateTimeElement.textContent = `Time Since Last Update: ${timeSinceUpdate} seconds`;
-                
-                lastUpdateTime = now;
-
-                // Update countdown to next pass over a specific location
-                getNextPassOverLocation(lat, lng);
-            } else {
-                handleError('Failed to retrieve ISS location.');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching ISS location:', error);
-            handleError('Error fetching ISS location.');
-        });
+      document.getElementById('latitude').textContent = `Latitude: ${lat.toFixed(2)}°`;
+      document.getElementById('longitude').textContent = `Longitude: ${lon.toFixed(2)}°`;
+      document.getElementById('altitude').textContent = `Altitude: ${alt} km`;
+      document.getElementById('velocity').textContent = `Velocity: ${vel} km/h`;
+    })
+    .catch(error => console.error('Error fetching data:', error));
 }
 
-function getNextPassOverLocation(lat, lng) {
-    // Dummy implementation for demonstration
-    // You would replace this with actual calculation or API call
-    const nextPassTime = new Date(Date.now() + 3600000); // 1 hour from now
-    countdownElement.textContent = `Next Pass Over Location: ${nextPassTime.toLocaleTimeString()}`;
-}
-
-function handleError(message) {
-    errorMessageElement.textContent = message;
-    errorElement.style.display = 'block';
-}
-
-// Update the ISS location every 5 seconds
-setInterval(updateISSLocation, 5000);
-
-// Initial update
-updateISSLocation();
+updateISS();
+setInterval(updateISS, 5000);  // Update ISS position every 5 seconds
