@@ -1,72 +1,81 @@
+/* General Styles */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
+/* Header */
 header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
-    text-align: center;
+  background-color: #1e1e2f;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
 
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
 }
 
-.map {
-    height: 70vh;
-    width: 100%;
-    max-width: 1200px;
+header p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #aaa;
 }
 
-.info {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
+/* Map Container */
+#map {
+  height: 500px;
+  margin: 20px auto;
+  max-width: 90%;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-#error {
-    background: #ffdddd;
-    color: #d8000c;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    display: none;
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
+/* Location Details */
+#location-details {
+  max-width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
 }
 
+.location-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 10px;
+}
+
+.location-card h2 {
+  margin-top: 0;
+  color: #1e1e2f;
+}
+
+.location-card p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+/* Footer */
 footer {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    text-align: center;
+  background-color: #1e1e2f;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 footer a {
-    color: #ffeb3b;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    .map {
-        height: 50vh;
-    }
+  color: #fff;
+  text-decoration: underline;
 }
